@@ -1,31 +1,48 @@
-export default interface BasicInfo {
-    basic: {
-        photo: File,
-        lastName: string,
-        firstName: string,
-        midName: string,
-        city: string,
-        birthdate: Date,
-        sex: GENDER,
-        ctznShip: string,
-        careerObj: string,
-        salary: Salary,
-        about: string
+export default interface BasicInfoInt{
+    photo: FileList | null;
+    surname: string;
+    name: string;
+    patronymic: string;
+    city: string;
+    birthdate: Date | null;
+    gender: SelectItem;
+    ctznShip: string;
+    careerObj: string;
+    salary: string;
+    currency: SelectItem;
+    about: string;
+}
+
+export const GENDER: SelectItem[] = [
+    {
+        value: 'female',
+        text: 'Female'
     },
+    {
+        value: 'male',
+        text: 'Male'
+    }
+];
+
+export const CURRENCY: SelectItem[] = [
+    {
+        value: 'rub',
+        text: 'RUB'
+    },
+    {
+        value: 'usd',
+        text: 'USD'
+    },
+    {
+        value: 'eur',
+        text: 'EUR'
+    }
+];
+
+export interface SelectItem {
+    value: string;
+    text: string;
 }
 
-interface Salary {
-    value: number,
-    currency: CURRENCY
-}
+export const disclaimer: string = 'Areas marked with an asterisk are required';
 
-export const enum GENDER {
-    male = 'MALE',
-    female = 'FEMALE'
-}
-
-export const enum CURRENCY {
-    rub = 'RUB',
-    usd = 'USD',
-    eur = 'EUR'
-}

@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import Overview from "./models/overview";
-import BasicInfo from "./models/basic-info";
+import BasicInfoInt from "./models/basic-info";
 import Experience from "./models/work-experience";
 import Education from "./models/education";
+import Basic from "./components/basic";
 
 const enum STAGES {
     basic = 'basic information',
@@ -14,11 +14,10 @@ const enum STAGES {
 
 export default class App extends React.Component<{}, {
     stage: string,
-    basic: BasicInfo | false,
+    basic: BasicInfoInt | false,
     workExp: Experience | false,
     edu: Education | false
 }> {
-
     constructor(props: {}) {
         super(props);
         this.state = {stage: 'basic', basic: false, workExp: false, edu: false};
@@ -32,7 +31,8 @@ export default class App extends React.Component<{}, {
         this.setState({stage: stage});
     }
 
-    updateBasic(basic: BasicInfo): void {
+    updateBasic(basic: BasicInfoInt): void {
+        console.log(basic);
         this.setState({basic: basic});
     }
 
@@ -45,8 +45,14 @@ export default class App extends React.Component<{}, {
     }
 
     render() {
-        return (
-           <div>{this.state.stage}</div>
-        );
+        const stage: string = this.state.stage;
+        if (stage === 'basic') {
+            // return <BasicInfo updateBasic={this.updateBasic} />;
+            return <Basic updateBasic={this.updateBasic}  updateStage={this.updateStage}/>;
+        } else if (stage === 'workExp') {
+            return false;
+        } else if (stage === 'edu') {
+            return false;
+        }
     }
 }
