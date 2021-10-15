@@ -42,7 +42,7 @@ export default function BasicSelect({type}: SelectProps) {
     return (
         <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-                <InputLabel id="select-label"></InputLabel>
+                <InputLabel id="select-label">{type}</InputLabel>
                 <Select
                     labelId="select-label"
                     id="select"

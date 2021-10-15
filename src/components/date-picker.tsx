@@ -6,7 +6,8 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 
 
-export default function MaterialUIPickers() {
+
+export default function DatePicker() {
     const [value, setValue] = React.useState<Date | null>(null);
 
     const handleChange = (newValue: Date | null, keyboardInputValue?: string | undefined) => {

@@ -1,21 +1,15 @@
 import React from 'react';
 import './App.css';
 import BasicInfoInt from "./models/basic-info";
-import Experience from "./models/work-experience";
+import WorkInfoInt from "./models/work-experience";
 import Education from "./models/education";
-import Basic from "./components/basic";
-
-const enum STAGES {
-    basic = 'basic information',
-    workExp = 'work experience',
-    edu = 'education',
-    overview = 'overview'
-};
+import BasicInfo from "./components/basic-info";
+import WorkExperience from "./components/work-experience";
 
 export default class App extends React.Component<{}, {
     stage: string,
     basic: BasicInfoInt | false,
-    workExp: Experience | false,
+    workExp: WorkInfoInt[] | false,
     edu: Education | false
 }> {
     constructor(props: {}) {
@@ -36,7 +30,7 @@ export default class App extends React.Component<{}, {
         this.setState({basic: basic});
     }
 
-    updateExp(exp: Experience): void {
+    updateExp(exp: WorkInfoInt[]): void {
         this.setState({workExp: exp});
     }
 
@@ -47,10 +41,9 @@ export default class App extends React.Component<{}, {
     render() {
         const stage: string = this.state.stage;
         if (stage === 'basic') {
-            // return <BasicInfo updateBasic={this.updateBasic} />;
-            return <Basic updateBasic={this.updateBasic}  updateStage={this.updateStage}/>;
+            return <BasicInfo updateBasic={this.updateBasic} updateStage={this.updateStage}/>;
         } else if (stage === 'workExp') {
-            return false;
+            return <WorkExperience updateExp={this.updateExp} updateStage={this.updateStage}/>;
         } else if (stage === 'edu') {
             return false;
         }

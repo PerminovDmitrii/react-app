@@ -1,10 +1,7 @@
-export default interface Experience {
-    expWork: false | WorkInf[],
-}
-
-interface WorkInf {
-    start: Date,
-    end: 'Until now' | Date,
+export default interface WorkInfoInt {
+    startDate: Date,
+    endDate: Date,
+    untilNow: string,
     companyName: string,
     position: string,
     responsibilities: string

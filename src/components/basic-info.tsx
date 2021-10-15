@@ -1,10 +1,10 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import BasicInfoInt from "../models/basic-info";
-import {useForm, Controller, FieldError} from "react-hook-form";
-import MaterialUIPickers from "./date-picker";
+import {useForm, Controller} from "react-hook-form";
 import BasicSelect from "./select";
 import * as Yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
+import DatePicker from "./date-picker";
 
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
     updateStage: (nextStage: string) => void;
 }
 
-export default function Basic({updateBasic, updateStage}: Props) {
+export default function BasicInfo({updateBasic, updateStage}: Props) {
 
     const validationSchema = Yup.object().shape({
         surname: Yup.string().required('Surname is required'),
@@ -29,10 +29,11 @@ export default function Basic({updateBasic, updateStage}: Props) {
     const { register, handleSubmit, control, formState: { errors }} = useForm<BasicInfoInt>({
         resolver: yupResolver(validationSchema)
     });
-    const onSubmit = useCallback((formValues: BasicInfoInt) => {
+
+    const onSubmit = (formValues: BasicInfoInt) => {
         updateBasic(formValues);
         updateStage('workExp');
-    }, []);
+    };
 
     const selectTypes = {
         gender: 'gender',
@@ -92,7 +93,7 @@ export default function Basic({updateBasic, updateStage}: Props) {
                             control={control}
                             name="birthdate"
                             render={() => (
-                               <MaterialUIPickers />
+                               <DatePicker />
                             )}
                         />
                     </div>
